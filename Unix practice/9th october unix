@@ -1,0 +1,16 @@
+input:->
+1|Lalha|Third|Vitas|90|91
+2|Neetha|Second|Monidiar|92|94
+3|Sethu|First|Dav|86|98
+4|Theekshana|Second|dav|97|86
+5|Teja|First|Sangamithra|89|88
+6|Theekshana|Second|Sangmithra|99|100
+
+code:->
+awk -F "|" '{a=($6-$5);
+print $1 "$" $2 "$"$3"$"$4"$"$5"$"$6"$"a}'|sort -nk7 -t "$"|tail -3
+
+Output:->
+6$Theekshana$Second$Sangmithra$99$100$1
+2$Neetha$Second$Monidiar$92$94$2
+3$Sethu$First$Dav$86$98$12
