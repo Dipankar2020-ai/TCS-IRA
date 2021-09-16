@@ -1,0 +1,20 @@
+Input:
+102|Daniel|1:47
+103|Girish|2:00
+104|Hiren|2
+309|Shital|
+309|Rama|0:89
+
+Code:
+tr ":" "|" |awk 'BEGIN {FS="|"}
+{
+ print $1,$2,$3*60+$4   
+    
+}'
+
+Output:
+102 Daniel 107
+103 Girish 120
+104 Hiren 120
+309 Shital 0
+309 Rama 89
