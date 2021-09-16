@@ -1,0 +1,32 @@
+Input:-
+Tushar ;1.35;paid
+Dick;3.87;unpaid
+Harry;56.00;Unpaid
+Tushar;36.03;unpaid
+Harry;22.60;unpaid
+Tushar;8.15;paid
+Tushar;11.44;unpaid
+Code:-
+awk '
+BEGIN {FS=";";count=0}
+{
+    if($3=="Unpaid"||$3=="unpaid")
+    {
+        a[$1]+=$2;
+        count=1
+    }
+}
+END{
+    
+    if(count==0){ print "Everybody paid"}
+    else
+    {
+        for(i in a){print i,"owes",a[i]}
+    }
+}'|sort -k1
+
+
+Output:-
+Dick owes 3.87
+Harry owes 78.6
+Tushar owes 47.47
