@@ -1,0 +1,18 @@
+input:->
+1,RamsDeptStore,Stationary,100,50
+2,Rajstore,Departmental,88,84
+3,Healthystore,Grocery,95,97
+4,Ministore,Medical,60,55
+
+code->
+awk '
+BEGIN{FS=","}
+{
+    print $1"|"$2"|"$3"|"$4"|"$5"|"$4-$5
+}'|sort -nk6 -t "|"
+
+Output:->
+3|Healthystore|Grocery|95|97|-2
+2|Rajstore|Departmental|88|84|4
+4|Ministore|Medical|60|55|5
+1|RamsDeptStore|Stationary|100|50|50
