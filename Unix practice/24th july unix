@@ -1,0 +1,15 @@
+input:-
+101,Adam,CSC,30
+102,Juhi,Math,78
+101,Adam,Math,90
+103,Adam,Math,50
+101,Adam,CHM,50
+102,Juhi,CSC,50
+
+code:->
+awk '
+BEGIN {FS=","}{if($4<60){a[$1]++}} END{for (i in a) {if (a[i]==1){print (i)}}}'
+
+Output:->
+102
+103
