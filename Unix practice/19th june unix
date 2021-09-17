@@ -1,0 +1,20 @@
+Input:->
+1,RajaR,9,60,85,SM
+2,Pooja,10,85,80,DAV
+3,RaghuRam,10,95,92,DAV
+4,Akhil,9,60,55,SM
+5,Bharath,10,80,88,SM
+6,chandra,9,75,92,Dav
+Code:->
+awk 'BEGIN{FS=","}
+{
+    if($5>80 && $5>$4)
+    {
+        print $1"|"$2"|"$3"|"$4"|"$5"|"$6
+    }
+}'|sort -rk2 -t "|"
+
+Output:->
+1|RajaR|9|60|85|SM
+6|chandra|9|75|92|Dav
+5|Bharath|10|80|88|SM
