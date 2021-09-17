@@ -1,0 +1,18 @@
+Input:->
+1,RamesDeptstore,100,50
+2,Rajstore,Departmental,85,80
+3,HealthyStore,Grocery,95,92
+4,Ministore,Medical,60,55
+Code:->
+awk '
+BEGIN {FS=","}
+{
+  if($5>=80)
+  {
+      print $1"|"$2"|"$3"|"$4"|"$5
+  }
+}'
+
+Output:->
+2|Rajstore|Departmental|85|80
+3|HealthyStore|Grocery|95|92
