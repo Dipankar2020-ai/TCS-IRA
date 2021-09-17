@@ -1,0 +1,19 @@
+input:
+1,Raja,python,oracle
+2,Latha,oracle,python
+3,Raghu,python,mysql
+4,Likit,mysql,oracle
+5,Latha,python,oracle
+
+code:->
+ awk 'BEGIN{FS=","}
+{
+    if($3=="python" && $4=="oracle")
+    {
+        print $1"&"$2"&"$3"&"$4; 
+    }
+}'|sort -nrk1
+
+output:->
+5&Latha&python&oracle
+1&Raja&python&oracle
