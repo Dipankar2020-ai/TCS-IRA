@@ -1,0 +1,22 @@
+Input:
+101,kumar,80,75
+102,Suresh,50,35
+103,ramesh,35,80
+104,shiva,82,77
+
+code:->
+awk 'BEGIN{FS=","}
+{
+    if($3>50 && $4>50)
+    {
+        avg=($3+$4)/2;
+        if(avg>=75)
+        {
+            print $1" "$2" "avg;
+        }
+    }
+}'|sort -nrk1
+
+Output:
+104 shiva 79.5
+101 kumar 77.5
