@@ -1,0 +1,27 @@
+Input:
+4
+2
+3
+4
+5
+
+code->
+read
+awk 'BEGIN{i=0;o=0}
+{
+    if($0%2==0)
+    {
+        i+=$0*$0
+    }
+    else
+    {
+        o+=$0*$0;
+    }
+}
+END{
+    print i-o
+}'
+
+
+Output:->
+-14
