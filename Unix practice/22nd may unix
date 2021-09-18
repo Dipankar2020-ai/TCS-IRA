@@ -1,0 +1,12 @@
+input:->
+Welcome to this tutorial on unix where we are practising  some commands 
+
+code:->
+read input
+char=$(echo $input|wc -m)
+word=$(echo $input|wc -w)
+
+echo $((char/word))
+
+Output:->
+5
