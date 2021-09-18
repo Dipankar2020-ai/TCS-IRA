@@ -1,0 +1,23 @@
+Input:
+123,Hari,87,78
+367,Madhav,40,50
+400,Naina,99,87
+567,Amy,35,68
+812,Ravi,58,98
+
+Code->
+awk 'BEGIN{FS=","}
+{
+    s=$3+$4;
+    if(s>100)
+    {
+    
+        print $1,$2,s
+    }
+}'|sort -k3 -n -r |cut -d " " -f1,2
+
+Output:->
+400 Naina
+123 Hari
+812 Ravi
+567 Amy
