@@ -1,0 +1,24 @@
+Input:->
+ItemId,ItemName,Itemprice
+1,Kumar,20
+2,suresh,400
+3,Ramesh,14
+4,karthick,53
+5,Surya,14
+6,Dinesh,14
+
+Code:->
+awk 'BEGIN{FS=",";count=0}
+{
+    if(NR==2){min=$3}
+    if($3<min)
+    {
+        min=$3;
+        count=0;
+    }
+    if($3==min){count+=1}
+}
+END{print count}'
+
+Output:->
+3
