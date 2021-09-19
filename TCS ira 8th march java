@@ -1,0 +1,102 @@
+import java.util.*;
+class Contest 
+{
+    int contestid;
+    String contestname;
+    String contestwinner;
+    int points;
+    String category;
+    Contest(int contestid,String contestname,String contestwinner,int points,String category)
+    {
+        this.contestid=contestid;
+        this.contestname=contestname;
+        this.contestwinner=contestwinner;
+        this.points=points;
+        this.category=category;
+    }
+}
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		Contest ct[]=new Contest[4];
+		for(int i=0;i<ct.length;i++)
+		{
+		    int contestid=sc.nextInt();
+		    sc.nextLine();
+		    String contestname=sc.nextLine();
+		    String 	contestwinner=sc.nextLine();
+		    int points=sc.nextInt();
+		    sc.nextLine();
+		    String category=sc.nextLine();
+		    ct[i]=new Contest(contestid,contestname,contestwinner,points,category);
+		    
+		}
+		String cname=sc.nextLine();
+		String cg=sc.nextLine();
+		int ans=findtotalpoints(ct,cname);
+		if(ans==0)
+		{
+		    System.out.println("Contest winner no found");
+		}
+		else{
+		    System.out.println(ans);
+		}
+		Contest ans2=getcontestwithwithsecondhighest(ct,cg);
+		if(ans2==null)
+		{
+		    System.out.println("There is no matching contest");
+		}
+		else{
+		     System.out.println(ans2.contestname+"\n"+ans2.points);
+		}
+	}
+	public static int findtotalpoints(Contest ct[],String cname)
+	{
+	    int sum=0;
+	    for(int i=0;i<ct.length;i++)
+	    {
+	        if(cname.equals(ct[i].contestwinner))
+	        {
+	            sum=sum+ct[i].points;
+	        }
+	    }
+	    return sum;
+	}
+	public static Contest getcontestwithwithsecondhighest(Contest ct[],String cg)
+	{
+	    Contest[] temp=new Contest[4];
+	    int m=0;
+	    for(Contest k:ct)
+	    {
+	        if(k.category.equalsIgnoreCase(cg))
+	        {
+	            temp[m]=k;
+	            m++;
+	        }
+	    }
+	    if(m==0)
+	    {
+	        return null;
+	    }
+	    for(int i=0;i<m-1;i++)
+	    {
+	        for(int j=0;j<m-i-1;j++)
+	        {
+	            if(temp[j].points<temp[j+1].points)
+	            {
+	                Contest x=temp[j];
+	                temp[j]=temp[j+1];
+	                temp[j+1]=x;
+	           }
+	        }
+	    }
+	    Contest result[]=new Contest[m];
+	    for(int i=0;i<m;i++)
+	    {
+	        result[i]=temp[i];
+	    }
+	    return result[1];
+	}
+	
+}
