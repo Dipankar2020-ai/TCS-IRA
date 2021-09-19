@@ -1,0 +1,116 @@
+import java.util.*;
+class ServiceCenter
+{
+    String ServiceCentername;
+    String branch;
+    double amountcharged;
+    boolean avaliableonline;
+    ServiceCenter(String ServiceCentername,String branch,double amountcharged,boolean avaliableonline)
+    {
+        this.ServiceCentername=ServiceCentername;
+        this.branch=branch;
+        this.amountcharged=amountcharged;
+        this.avaliableonline=avaliableonline;
+    }
+}
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		ServiceCenter cen[]=new ServiceCenter[4];
+		for(int i=0;i<cen.length;i++)
+		{
+		    String ServiceCentername=sc.nextLine();
+		    String branch=sc.nextLine();
+		    double amountcharged=sc.nextDouble();
+		    boolean avaliableonline=sc.nextBoolean();
+		    cen[i]=new ServiceCenter(ServiceCentername,branch,amountcharged,avaliableonline);
+		   	sc.nextLine();
+		   
+		}
+		
+	
+		String input=sc.nextLine();
+	    double ans=findavgcostonline(cen);
+	    if(ans==0)
+		 {
+		   System.out.println("No center is avaliable online");
+		 }
+		 else{
+		     System.out.println(ans);
+		 }
+		 ServiceCenter[] ans2=findservicecenter(cen,input);
+		 if(ans2==null)
+		 {
+		     System.out.println("No center is avaliable");
+		 }
+		 else{
+		     for(int i=0;i<ans2.length;i++)
+		     {
+		         System.out.println(ans2[i].ServiceCentername+"\n"+ans2[i].amountcharged);
+		     }
+		 }
+		
+	}
+	public static double findavgcostonline(ServiceCenter cen[])
+	{
+	    double sum=0;
+	    int count=0;
+	    for(int i=0;i<cen.length;i++)
+	    {
+	        if(cen[i].avaliableonline)
+	        {
+	             sum=sum+cen[i].amountcharged;
+	             count++;
+	        }
+	       
+	    }
+	    if(sum==0)
+	    {
+	        return 0;
+	    }
+	    else{
+	        double avg=(sum)/(count);
+	        return avg;
+	    }
+	}
+	
+	public static  ServiceCenter[] findservicecenter(ServiceCenter cen[],String input)
+	{
+	    ServiceCenter temp[]=new ServiceCenter[4];
+	    int k=0;
+	    for(int i=0;i<cen.length;i++)
+	    {
+	        if(String.valueOf(cen[i].branch.charAt(0)).equalsIgnoreCase(input))
+	        {
+	            temp[k]=cen[i];
+	            k++;
+	        }
+	    }
+	    if(k==0)
+	    {
+	        return null;
+	    }
+	    
+	    for(int i=0;i<k-1;i++)
+	    {
+	        for(int j=0;j<k-i-1;j++)
+	         {
+	            if(temp[j].amountcharged<temp[j+1].amountcharged)
+	              {
+	                  ServiceCenter x=temp[j];
+	                  temp[j]=temp[j+1];
+	                  temp[j+1]=x;
+	             }
+	          }
+	    }
+	    ServiceCenter result[]=new ServiceCenter[k];
+	    for(int i=0;i<k;i++)
+	    {
+	        result[i]=temp[i];
+	    }
+	    return result;
+	}
+	
+	
+}
